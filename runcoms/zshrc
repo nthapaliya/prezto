@@ -11,3 +11,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+dotfiles="$HOME/.dotfiles"
+source "$dotfiles/zsh/alias"
+source "$dotfiles/zsh/custom-functions"
+
+[ -z "$COMPATIBILITY" ] && source "$dotfiles/zsh/promptline.sh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
