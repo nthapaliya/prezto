@@ -5,23 +5,23 @@
 # Authors: Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# Load manually installed rbenv into the shell session.
+if [[ -s "${RBENV_ROOT:-$HOME/.rbenv}/bin/rbenv" ]]; then
+  path=("${RBENV_ROOT:-$HOME/.rbenv}/bin" $path)
+  eval "$(rbenv init - --no-rehash zsh)"
+
+# Load package manager installed rbenv into the shell session.
+elif (( $+commands[rbenv] )); then
+  eval "$(rbenv init - --no-rehash zsh)"
+
 # Load RVM into the shell session.
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   # Unset AUTO_NAME_DIRS since auto adding variable-stored paths to ~ list
   # conflicts with RVM.
   unsetopt AUTO_NAME_DIRS
 
   # Source RVM.
   source "$HOME/.rvm/scripts/rvm"
-
-# Load manually installed rbenv into the shell session.
-elif [[ -s "$HOME/.rbenv/bin/rbenv" ]]; then
-  path=("$HOME/.rbenv/bin" $path)
-  eval "$(rbenv init - --no-rehash zsh)"
-
-# Load package manager installed rbenv into the shell session.
-elif (( $+commands[rbenv] )); then
-  eval "$(rbenv init - --no-rehash zsh)"
 
 # Load package manager installed chruby into the shell session.
 elif (( $+commands[chruby-exec] )); then
