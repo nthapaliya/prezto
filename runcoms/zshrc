@@ -16,5 +16,9 @@ dotfiles="$HOME/.dotfiles"
 source "$dotfiles/zsh/alias"
 source "$dotfiles/zsh/custom-functions"
 
+if [[ "$TERM_PROGRAM" != 'iTerm.app' ]]; then
+  export COMPATIBILITY=1
+fi
+
 [ -z "$COMPATIBILITY" ] && source "$dotfiles/zsh/promptline.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
