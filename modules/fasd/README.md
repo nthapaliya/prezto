@@ -15,7 +15,7 @@ been disabled.
 Aliases
 -------
 
-  - `j` changes the current working directory interactively.
+  - `z` changes the current working directory interactively.
 
 Completion
 ----------
