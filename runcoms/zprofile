@@ -67,3 +67,11 @@ fi
 #
 
 TMPPREFIX="$(mktemp -d)/zsh"
+if [[ ! -d "$TMPDIR" ]]; then
+  export TMPDIR="$(mktemp -d)"
+fi
+
+TMPPREFIX="${TMPDIR%/}/zsh"
+
+# Set global variables
+export RBENV_ROOT=$HOME/Lang/rbenv
