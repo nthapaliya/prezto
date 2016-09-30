@@ -12,9 +12,8 @@ fi
 
 # Customize to your needs...
 
-dotfiles="$HOME/.dotfiles"
-source "$dotfiles/zsh/alias"
-source "$dotfiles/zsh/custom-functions"
+source "${ZDOTDIR:-$HOME}/.zprezto/extras/alias"
+source "${ZDOTDIR:-$HOME}/.zprezto/extras/custom-functions"
 
 if [[ "$TERM_PROGRAM" != 'iTerm.app' ]]; then
   export COMPATIBILITY=1
