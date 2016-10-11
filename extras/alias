@@ -18,7 +18,6 @@ alias vd='vagrant destroy'
 alias vh='vagrant halt'
 alias vssh='vagrant ssh'
 alias guo='git_up_oss'
-alias zshrc='nvim ~/.zshrc'
 alias vd='cd ~/OSS/huddle/app/assets/javascripts/visual_directory'
 alias v='f -e nvim'
 alias mclient='bundle exec mina full_deploy HOST=client1 BRANCH=`git rev-parse --abbrev-ref HEAD`'
@@ -38,3 +37,4 @@ alias gdca="git diff --cached"
 
 
 alias lsd='ls -d .*'
+alias prezto='cd ~/.zprezto && vdirty'
