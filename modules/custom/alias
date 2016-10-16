@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# general
+alias al='ag --files-with-matches --smart-case'
+alias edit='xargs -o $EDITOR '
+alias lsd='ls -d .*'
+alias vdirty="git status -s | awk '{ print \$NF }' | edit "
+alias vi='nvim'
+
+# rubocop, mina, rspec, huddle
+alias mclient='bundle exec mina full_deploy HOST=client1 BRANCH=`git rev-parse --abbrev-ref HEAD`'
+alias mqa='bundle exec mina full_deploy HOST=qa.ossd.co BRANCH=`git rev-parse --abbrev-ref HEAD`'
+alias rubo='git diff --name-only -z -- \*.{rb,rake} | xargs -0 bundle exec rubocop -a -R -D'
+alias rubox='bundle exec rubocop -a -R -D **/*.{rb,rake}'
+alias spec='git diff --name-only -z -- spec/**/*.rb | xargs -0 bundle exec rspec'
+alias vd='cd ~/OSS/huddle/app/assets/javascripts/visual_directory'
+alias vdc='vd && cd components '
+
+# git
+alias gb='git branch'
+alias gcm='git checkout master'
+alias gco='git checkout'
+alias gdca='git diff --cached'
+alias gss='git status -s'
+
+# vagrant
+# alias vd='vagrant destroy'
+alias vh='vagrant halt'
+alias vp='vagrant provision'
+alias vss='vagrant status'
+alias vssh='vagrant ssh'
+alias vu='vagrant up'
+
+# misc
+alias now='date +"%R"'
+alias today='date +"%F (%a %b %d)"'
+alias weather='curl wttr.in'
+
+alias nyan='telnet nyancat.dakko.us'
+alias prezto='cd ~/.zprezto && vdirty'
+alias tmate='COMPATIBILITY=1 tmate'

@@ -12,9 +12,6 @@ fi
 
 # Customize to your needs...
 
-source "${ZDOTDIR:-$HOME}/.zprezto/extras/alias"
-source "${ZDOTDIR:-$HOME}/.zprezto/extras/custom-functions"
-
 if [[ "$TERM_PROGRAM" != 'iTerm.app' ]]; then
   export COMPATIBILITY=1
 fi
