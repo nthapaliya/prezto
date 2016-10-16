@@ -1,0 +1,33 @@
+#compdef npm
+
+_npm() {
+  typeset -A opt_args
+  local context state line
+
+  local project_root=${"$(git rev-parse --show-toplevel 2> /dev/null)":-$PWD}
+  local package_json="$project_root/package.json"
+
+  _arguments \
+    '1:commands:->commands' \
+    ':args:->args'
+
+  case $state in
+    (commands)
+      local commands=(
+      access adduser bin bugs c cache completion config ddp dedupe deprecate dist-tag docs edit explore get
+      help help-search i init install install-test it link list ln login logout ls outdated owner pack ping
+      prefix prune publish rb rebuild repo restart root run run-script s se search set shrinkwrap star
+      stars start stop t tag team test tst un uninstall unpublish unstar up update v version view whoami
+      )
+      _describe 'commands' commands
+      ;;
+    (args)
+      if [[ $words[2] == 'run' && -a $package_json ]]; then
+        local scripts=(${$(jq -r '.scripts | keys | .[]' $package_json):gs/:/\\:})
+        _describe 'scripts' scripts
+      fi
+      ;;
+  esac
+}
+
+_npm
