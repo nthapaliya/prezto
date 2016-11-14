@@ -18,6 +18,7 @@ prompt_promptline_setup() {
 
   PROMPT='%F{15}%K{136} %n %F{136}%K{243}%F{15}%K{243}%(1/: %(5~:${${PWD//$HOME/~}[1,1]}  ⋯   ${PWD:t} :${${PWD//$HOME/~}[1,1]}${${PWD#$HOME}:gs./.  } ): / )%F{243}%K{-1}%f%k '
   RPROMPT="%(?::%F{208}%F{235}%K{208} %? )%(1V:%F{239}%F{15}%K{239}  %1v :)%f%k"
+  SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
 
 prompt_promptline_setup
@@ -31,4 +32,5 @@ prompt_promptline_setup
 # };
 # PROMPT='%F{15}%K{136} %n %F{136}%K{243}%F{15}%K{243}%(1/: %(5~:${${PWD//$HOME/~}[1,1]}  ⋯   ${PWD:t} :${${PWD//$HOME/~}[1,1]}${${PWD#$HOME}:gs./.  } ): / )%F{243}%K{-1}%f%k ';
 # RPROMPT="%(?::%F{208}%F{235}%K{208} %? )%(1V:%F{239}%F{15}%K{239}  %1v :)%f%k";
+# SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 
