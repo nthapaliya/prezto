@@ -17,3 +17,11 @@ if [[ "$TERM_PROGRAM" != 'iTerm.app' ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# NOTES:
+# Slow zsh? Run `compaudit` and check if permissions are 755
+#
+# Profiling
+# Enable this line at the beginning of the zshrc
+# `$ zmodload zsh/zprof`
+# run zprof after terminal loaded
