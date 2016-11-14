@@ -5,7 +5,7 @@ _is_rails_app () {
 }
 
 _should_rebuild_cache () {
-  [[ Rakefile -nt $1 ]] || { _is_rails_app && _tasks_changed $1 }
+  [[ $project_root/Rakefile -nt $1 ]] || { _is_rails_app && _tasks_changed $1 }
 }
 
 _tasks_changed () {
@@ -27,7 +27,7 @@ _rake () {
 
   local -a rake_tasks
   local project_root=${"$(git rev-parse --show-toplevel 2> /dev/null)":-$PWD}
-  local cachefile=${project_root:gs-/-_}
+  local cachefile="rake_${project_root:gs-/-_}"
 
   if [[ -f $project_root/Rakefile ]]; then
     if _cache_invalid $cachefile || ! _retrieve_cache $cachefile; then
