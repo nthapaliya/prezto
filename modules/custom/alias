@@ -39,3 +39,6 @@ alias weather='curl wttr.in'
 alias nyan='telnet nyancat.dakko.us'
 alias prezto='cd ~/.zprezto && vdirty'
 alias tmate='COMPATIBILITY=1 tmate'
+
+alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
+alias htree='tree -a -I plugged '
