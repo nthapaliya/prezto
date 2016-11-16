@@ -46,7 +46,7 @@ movtogif() {
 
 smallify() {
   [ -z "$1" ] && echo 'Error: Filename not specified' && return 1;
-  filters="fps=15,scale=iw*.5:-2"
+  filters="fps=15,scale=trunc(in_w/4)*2:trunc(in_h/4)*2"
 
   ffmpeg -i "$1" -v warning -vf "$filters" -vcodec h264 -an -strict -2 -y "${1%.*}.mp4"
 }
