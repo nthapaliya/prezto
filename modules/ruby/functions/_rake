@@ -1,17 +1,15 @@
 #compdef rake
 
-_is_rails_app () {
-  [[ -e "$project_root/bin/rails" ]] || [[ -e "$project_root/script/rails" ]]
-}
-
+# returns 0 if cache needs rebuilding
 _should_rebuild_cache () {
-  [[ $project_root/Rakefile -nt $1 ]] || { _is_rails_app && _tasks_changed $1 }
-}
+  if [[ $project_root/Rakefile -nt $1 ]]; then
+    return 0
+  fi
 
-_tasks_changed () {
   local -a files
-  files=($project_root/lib/tasks $project_root/lib/tasks/**/*(N))
+  files=($project_root/lib/tasks/**/*.rake(.))
 
+  # empty list if nothing exists
   for file in $files; do
     if [[ "$file" -nt $1 ]]; then
       return 0
