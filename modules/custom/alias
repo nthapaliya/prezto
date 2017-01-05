@@ -3,7 +3,6 @@
 # general
 alias al='ag --files-with-matches --smart-case'
 alias edit='xargs -o $EDITOR '
-alias lsd='ls -d .*'
 alias vdirty="git status -s | awk '{ print \$NF }' | edit "
 alias vi='nvim'
 
@@ -22,6 +21,7 @@ alias gcm='git checkout master'
 alias gco='git checkout'
 alias gdca='git diff --cached'
 alias gss='git status -s'
+alias gcb='git rev-parse --abbrev-ref HEAD'
 
 # vagrant
 # alias vd='vagrant destroy'
@@ -37,8 +37,15 @@ alias today='date +"%F (%a %b %d)"'
 alias weather='curl wttr.in'
 
 alias nyan='telnet nyancat.dakko.us'
-alias prezto='cd ~/.zprezto && vdirty'
 alias tmate='COMPATIBILITY=1 tmate'
 
+# work
 alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
-alias htree='tree -a -I plugged '
+alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
+alias reyarn='cd $( git rev-parse --show-toplevel ); rm -rf node_modules && yarn install && yarn run build'
+
+# dotfiles
+alias lsd='ls -d .*'
+alias prezto='cd ~/.zprezto && vdirty'
+alias htree='tree -a -I plugged\|\.git'
+alias zshrc='$EDITOR $HOME/.zshrc'
