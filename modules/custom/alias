@@ -22,6 +22,7 @@ alias gco='git checkout'
 alias gdca='git diff --cached'
 alias gss='git status -s'
 alias gcb='git rev-parse --abbrev-ref HEAD'
+alias conflict='gss | grep UU | cut -d " " -f 2 '
 
 # vagrant
 # alias vd='vagrant destroy'
