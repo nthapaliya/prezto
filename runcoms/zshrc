@@ -37,3 +37,6 @@ _fzf_compgen_path() {
 # Enable this line at the beginning of the zshrc
 # `$ zmodload zsh/zprof`
 # run zprof after terminal loaded
+
+eval "$(direnv hook zsh)"
+export MANPAGER="nvim -c 'set ft=man' - "
