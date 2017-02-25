@@ -22,6 +22,7 @@ alias gco='git checkout'
 alias gdca='git diff --cached'
 alias gss='git status -s'
 alias gcb='git rev-parse --abbrev-ref HEAD'
+alias git_root='cd $(git rev-parse --show-toplevel) ; '
 alias conflict='gss | grep UU | cut -d " " -f 2 '
 
 # vagrant
@@ -43,7 +44,9 @@ alias tmate='COMPATIBILITY=1 tmate'
 # work
 alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
 alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
-alias reyarn='cd $( git rev-parse --show-toplevel ); rm -rf node_modules && yarn install && yarn run build'
+alias eslintx="git_root; cd vendor; gss | grep 'jsx\|es6' | awk ' { print \$NF } ' | xargs ../bin/eslint --fix "
+alias eslint_all="git_root; cd vendor; find ../app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 ../bin/eslint "
+alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
 
 # dotfiles
 alias lsd='ls -d .*'
