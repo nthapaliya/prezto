@@ -3,17 +3,31 @@
 # general
 alias al='ag --files-with-matches --smart-case'
 alias edit='xargs -o $EDITOR '
-alias vdirty="git status -s | awk '{ print \$NF }' | edit "
 alias vi='nvim'
 
-# rubocop, mina, rspec, huddle
-alias mclient='bundle exec mina full_deploy HOST=client1 BRANCH=`git rev-parse --abbrev-ref HEAD`'
-alias mqa='bundle exec mina full_deploy HOST=qa.ossd.co BRANCH=`git rev-parse --abbrev-ref HEAD`'
+# work
+alias mclient='bundle exec mina full_deploy HOST=client1 BRANCH=`gcb`'
+alias mqa='bundle exec mina full_deploy HOST=qa.ossd.co BRANCH=`gcb`'
+
 alias rubo='git diff --name-only -z -- \*.{rb,rake} | xargs -0 bundle exec rubocop -a -R -D'
 alias rubox='bundle exec rubocop -a -R -D **/*.{rb,rake}'
-alias spec='git diff --name-only -z -- spec/**/*.rb | xargs -0 bundle exec rspec'
+
+# alias git_root='cd $(git rev-parse --show-toplevel) ; '
+# alias gss='git status -s'
+alias eslint="git_root; cd vendor; gss | grep 'jsx\|es6' | awk ' { print \$NF } ' | xargs ../bin/eslint"
+alias eslint_all="git_root; cd vendor; find ../app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 ../bin/eslint "
+alias eslintx="eslint --fix"
+alias eslintx_all="eslint_all --fix"
+
 alias vd='cd ~/OSS/huddle/app/assets/javascripts/visual_directory'
 alias vdc='vd && cd components '
+
+alias spec='git diff --name-only -z -- spec/**/*.rb | xargs -0 bundle exec rspec'
+
+alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
+alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
+
+alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
 
 # git
 alias gb='git branch'
@@ -24,6 +38,7 @@ alias gss='git status -s'
 alias gcb='git rev-parse --abbrev-ref HEAD'
 alias git_root='cd $(git rev-parse --show-toplevel) ; '
 alias conflict='gss | grep UU | cut -d " " -f 2 '
+alias vdirty="git status -s | awk '{ print \$NF }' | edit "
 
 # vagrant
 # alias vd='vagrant destroy'
@@ -40,13 +55,6 @@ alias weather='curl wttr.in'
 
 alias nyan='telnet nyancat.dakko.us'
 alias tmate='COMPATIBILITY=1 tmate'
-
-# work
-alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
-alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
-alias eslintx="git_root; cd vendor; gss | grep 'jsx\|es6' | awk ' { print \$NF } ' | xargs ../bin/eslint --fix "
-alias eslint_all="git_root; cd vendor; find ../app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 ../bin/eslint "
-alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
 
 # dotfiles
 alias lsd='ls -d .*'
