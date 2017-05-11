@@ -2,7 +2,6 @@
 
 # general
 alias al='ag --files-with-matches --smart-case'
-alias edit='xargs -o $EDITOR '
 alias vi='nvim'
 
 # work
@@ -12,9 +11,7 @@ alias mqa='bundle exec mina full_deploy HOST=qa.ossd.co BRANCH=`gcb`'
 alias rubo='git diff --name-only -z -- \*.{rb,rake} | xargs -0 bundle exec rubocop -a -R -D'
 alias rubox='bundle exec rubocop -a -R -D **/*.{rb,rake}'
 
-# alias git_root='cd $(git rev-parse --show-toplevel) ; '
-# alias gss='git status -s'
-alias eslint="git_root; cd vendor; gss | grep 'jsx\|es6' | awk ' { print \$NF } ' | xargs ../bin/eslint"
+alias eslint='git_root; cd vendor; gss | grep "jsx\|es6" | awk " { print \$NF } " | xargs ../bin/eslint'
 alias eslint_all="git_root; cd vendor; find ../app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 ../bin/eslint "
 alias eslintx="eslint --fix"
 alias eslintx_all="eslint_all --fix"
@@ -27,18 +24,21 @@ alias spec='git diff --name-only -z -- spec/**/*.rb | xargs -0 bundle exec rspec
 alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
 alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
 
-alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
+alias reyarn='git_root; cd vendor; yarn install;'
+# alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
 
 # git
 alias gb='git branch'
 alias gcm='git checkout master'
+alias gcmt='git commit'
 alias gco='git checkout'
 alias gdca='git diff --cached'
 alias gss='git status -s'
 alias gcb='git rev-parse --abbrev-ref HEAD'
 alias git_root='cd $(git rev-parse --show-toplevel) ; '
 alias conflict='gss | grep UU | cut -d " " -f 2 '
-alias vdirty="git status -s | awk '{ print \$NF }' | edit "
+alias vdirty='$EDITOR $( git status -s | awk "{ print \$NF }" ) '
+alias gdev='git_root; git apply ../dev.patch'
 
 # vagrant
 # alias vd='vagrant destroy'
