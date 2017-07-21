@@ -11,21 +11,20 @@ alias mqa='bundle exec mina full_deploy HOST=qa.ossd.co BRANCH=`gcb`'
 alias rubo='git diff --name-only -z -- \*.{rb,rake} | xargs -0 bundle exec rubocop -a -R -D'
 alias rubox='bundle exec rubocop -a -R -D **/*.{rb,rake}'
 
-alias eslint='git_root; cd vendor; gss | grep "jsx\|es6" | awk " { print \$NF } " | xargs ../bin/eslint'
-alias eslint_all="git_root; cd vendor; find ../app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 ../bin/eslint "
-alias eslintx="eslint --fix"
-alias eslintx_all="eslint_all --fix"
+alias eslint='git_root; yarn run eslint'
+alias eslint_all="git_root; find app/assets/javascripts/visual_directory -name '*.jsx' -or -name '*.es6' | xargs -P4 -n100 bin/eslint | tee eslint_output "
+alias eslintx="yarn run eslintx"
+# alias eslintx_all="eslint_all --fix"
 
 alias vd='cd ~/OSS/huddle/app/assets/javascripts/visual_directory'
 alias vdc='vd && cd components '
 
-alias spec='git diff --name-only -z -- spec/**/*.rb | xargs -0 bundle exec rspec'
+alias spec='gss -- spec/**/*.rb | awk "{ print \$NF }" | xargs bundle exec rspec'
 
 alias graylog='ssh -N -L 12900:localhost:12900 -L 9000:localhost:9000 root@kraken.officespacesoftware.com'
 alias forward_local='ssh -N -tt osadmin@builder.ossd.co -R 10000:localhost:3000'
 
-alias reyarn='git_root; cd vendor; yarn install;'
-# alias reyarn='git_root ; bin/rm-node_modules && bin/yarn-install-all'
+alias reyarn='git_root; rm -rf node_modules; yarn install;'
 
 # git
 alias gb='git branch'
@@ -50,7 +49,8 @@ alias vu='vagrant up'
 
 # misc
 alias now='date +"%R"'
-alias today='date +"%F (%a %b %d)"'
+alias today='$EDITOR $HOME/OSS/notes/daily/$( gdate +%F ).md'
+
 alias weather='curl wttr.in'
 
 alias nyan='telnet nyancat.dakko.us'

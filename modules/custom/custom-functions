@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 play-yt() {
-  input="$@"
+  input="$*"
   youtube-dl \
     --default-search 'ytsearch' \
     --no-playlist \
